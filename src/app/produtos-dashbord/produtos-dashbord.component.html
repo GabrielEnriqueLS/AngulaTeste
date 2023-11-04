@@ -1,0 +1,73 @@
+<!-- Barra de navegaçao-->
+
+<nav class="navbar navbar-light bg-primary">
+    <div>
+        <h1 style="color: aliceblue;" > Angular CRUD</h1>
+    </div>
+    <div class="d-flex">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Adicionar produto</button>
+    </div>
+</nav>
+
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Nome produto</th>
+            <th scope="col">codigo de barras</th>
+            <th scope="col">preco</th>
+            <th scope="col">Oque desaja fazer</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="row de produtosData">
+            <td>{{row.id}}</td>
+            <td>{{row.nomeProduto}}</td>
+            <td>{{row.codBarras}}</td>
+            <td>{{row.preco}}</td>
+            <td> 
+                <button class="btn btn-primary">Editar</button>
+                <button class="btn btn-danger ml-3">deletar</button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">O que vai adicionar?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="FormValue">
+                <div class="mb-3">
+                  <label for="NomeProduto" class="form-label">Nome Do Produto</label>
+                  <input type="email" formControlName="nomeProduto" class="form-control" id="NomeProduto">
+                </div>
+                <div class="mb-3">
+                  <label for="CodBarras" class="form-label">Codigo de barras</label>
+                  <input type="text" formControlName="codBarras" class="form-control" id="CodBarras">
+                </div>
+                <div class="mb-3">
+                    <label for="Preco" class="form-label">Preco</label>
+                    <input type="text" formControlName="preco" class="form-control" id="Preco">
+                </div>
+
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="fecha" class="btn btn-secondary" data-bs-dismiss="modal" >Fechar</button>
+          <button type="button" (click)="postProdutoDetails()" class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
