@@ -1,5 +1,7 @@
 # AngularCRUD
 
+
+Para roda o "server" json usa esses comandos npm (install -g json-serve)  roda o server(json-server --watch db.json)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
 ## Development server
