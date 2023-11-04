@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. Para roda o "server" json usa esses comandos npm install `-g json-serve`  roda o server `json-server --watch db.json`
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. Para roda o "server" json usa esses comandos `npm install -g json-serve`  e para roda o server `json-server --watch db.json`
 
 ## Code scaffolding
 
