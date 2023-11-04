@@ -12,10 +12,12 @@ import { ProdutosModel } from './produtos-dash bord.model';
 export class ProdutosDashbordComponent implements OnInit{
 
 
+  row : any;
   FormValue !: FormGroup;
   produtosModelObj : ProdutosModel = new ProdutosModel();
   produtosData !: any;
-  
+  showAdd !: boolean;
+  showUpdate !: boolean;
 
   constructor(private formbuilder: FormBuilder ,
     private api : ApiService){ }
@@ -29,6 +31,11 @@ export class ProdutosDashbordComponent implements OnInit{
     this.getAllprodutos();
   }
 
+  clickAdicionaProduto(){
+    this.FormValue.reset();
+    this.showAdd = true;
+    this.showUpdate = false;
+  }
   
   postProdutoDetails(){
     this.produtosModelObj.nomeProduto = this.FormValue.value.nomeProduto;
@@ -36,18 +43,23 @@ export class ProdutosDashbordComponent implements OnInit{
     this.produtosModelObj.preco = this.FormValue.value.preco;
 
 
-    //erro
-    this.api.postNomeProduto(this.produtosModelObj)
-      .subscribe(res=>{
+   
+    const observer = {
+      next: (res: any) => {
         console.log(res);
-        alert("Produto adicionado com sucesso")
-        let ref = document.getElementById('fecha')
-        this.FormValue.reset();
-      }, 
-      err=>{
-        alert("algo deu errado")
-      })
+        alert("Produto adicionado com sucesso");
+        let ref = document.getElementById('fecha');
+        this.FormValue.reset(); 
+      },
+      error: (err: any) => {
+        alert("algo deu errado"); 
+      }
+    };
+    
+    
+    this.api.postNomeProduto(this.produtosModelObj).subscribe(observer);
   }
+
 
   getAllprodutos(){
     this.api.getNomeProduto()
@@ -55,5 +67,38 @@ export class ProdutosDashbordComponent implements OnInit{
         this.produtosData = res;
       })
   }
+
+  deleteProduto(row : any){
+    this.api.deleteNomeProduto(row.id)
+    .subscribe(res=>{
+      alert("Produto apagado");
+      this.getAllprodutos();
+    })
+
+  }
+
+  onEdit(row: any){
+    this.showAdd = false;
+    this.showUpdate = true;
+
+    this.produtosModelObj.id = row.id;
+    this.FormValue.controls['Nome do produto'].setValue(row.nomeProduto);
+    this.FormValue.controls['codigo de barras'].setValue(row.codBarras);
+    this.FormValue.controls['preco'].setValue(row.preco);
+  }
+
+  updateProdutoDetails(){
+    this.produtosModelObj.nomeProduto = this.FormValue.value.nomeProduto;
+    this.produtosModelObj.codBarras = this.FormValue.value.codBarras;
+    this.produtosModelObj.preco = this.FormValue.value.preco;
+
+    this.api.updateNomeProduto(this.produtosModelObj, this.produtosModelObj.id)
+      .subscribe(res=>{
+        alert("Atualizado com sucesso");
+        let ref = document.getElementById('fecha');
+        this.FormValue.reset(); 
+      })
+  }
+
 
 }

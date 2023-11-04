@@ -2,52 +2,16 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "nomeProduto": "laranja",
+      "preco": "8"
     },
     {
       "id": 2,
-      "nomeProduto": "Batata",
-      "preco": "50,00"
-    },
-    {
-      "id": 3,
-      "nomeProduto": "Batata",
-      "preco": "50,00"
-    },
-    {
-      "id": 4,
-      "nomeProduto": "pano",
-      "preco": "2,00"
-    },
-    {
-      "id": 5,
-      "nomeProduto": "dsadss",
-      "preco": "2313"
-    },
-    {
-      "id": 6,
-      "nomeProduto": "412414",
-      "preco": "3424234"
-    },
-    {
-      "id": 7,
-      "nomeProduto": "Batata",
-      "preco": "50,00"
-    },
-    {
-      "id": 8,
-      "nomeProduto": "1231",
-      "preco": "3123"
+      "nomeProduto": "morango",
+      "preco": "12"
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }

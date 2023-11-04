@@ -9,7 +9,6 @@ export class ApiService {
 
   constructor(private http : HttpClient) { }
 
- //Por algum motivo se eu nao bota como any no post ele da erro
 
   postNomeProduto(data : any){
     return this.http.post<any>("http://localhost:3000/posts", data)
@@ -25,9 +24,9 @@ export class ApiService {
     }))
   }
 
-  updateNomeProduto(data : number,id : number){
-    return this.http.put<number>("http://localhost:3000/posts/"+id,data)
-    .pipe(map((res:number)=>{
+  updateNomeProduto(data : any,id : any){
+    return this.http.put<any>("http://localhost:3000/posts/"+id,data)
+    .pipe(map((res:any)=>{
       return res;
     }))
   }
